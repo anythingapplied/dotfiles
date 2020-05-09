@@ -1,4 +1,4 @@
-""" Vundle 
+""" Vundle
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -12,8 +12,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Plugin 'andviro/flake8-vim'
+""" gc comment target motion
 Plugin 'tpope/vim-commentary'
+
+""" Change surrounding ' to " - cs'"
+""" Add surrounding " ysiw"
+Plugin 'tpope/vim-surround'
+
+Plugin 'tpope/vim-repeat'
+
+Plugin 'vim-airline/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -33,43 +41,19 @@ filetype plugin indent on    " required
 
 """ End Vundle
 
-
+""" Personal
 set number relativenumber
-set nu rnu
+set smarttab
+set background=dark
+set t_Co=256
 
-" The default vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2019 Oct 27
-"
-" This is loaded if no vimrc file was found.
-" Except when Vim is run with "-u NONE" or "-C".
-" Individual settings can be reverted with ":set option&".
-" Other commands can be reverted as mentioned below.
+set list
+set listchars=eol:$,tab:├─,trail:␠,nbsp:⎵
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t\|\t/
 
-" Bail out if something that ran earlier, e.g. a system wide vimrc, does not
-" want Vim to use these default values.
-if exists('skip_defaults_vim')
-  finish
-endif
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-" Avoid side effects when it was already reset.
-if &compatible
-  set nocompatible
-endif
-
-" When the +eval feature is missing, the set command above will be skipped.
-" Use a trick to reset compatible only when the +eval feature is missing.
-silent! while 0
-  set nocompatible
-silent! endwhile
+""" From Default Config
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
@@ -111,18 +95,6 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine.  By enabling it you
-" can position the cursor, Visually select and scroll with the mouse.
-" Only xterm can grab the mouse events when using the shift key, for other
-" terminals use ":", select text and press Esc.
-if has('mouse')
-  if &term =~ 'xterm'
-    set mouse=a
-  else
-    set mouse=nvi
-  endif
-endif
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
@@ -169,12 +141,6 @@ endif
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+  \ | wincmd p | diffthis
 endif
 
-if has('langmap') && exists('+langremap')
-  " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If set (default), this may break plugins (but it's backward
-  " compatible).
-  set nolangremap
-endif
