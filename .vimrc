@@ -21,7 +21,16 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'tpope/vim-repeat'
 
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'airblade/vim-gitgutter'
+
 Plugin 'vim-airline/vim-airline'
+
+Plugin 'edkolev/tmuxline.vim'
+
+Plugin 'takac/vim-hardtime'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,30 +50,19 @@ filetype plugin indent on    " required
 
 """ End Vundle
 
-""" Personal
-set number relativenumber
-set smarttab
-set background=dark
-set t_Co=256
-
-set list
-set listchars=eol:$,tab:├─,trail:␠,nbsp:⎵
-
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t\|\t/
 
 """ From Default Config
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
-set history=200		" keep 200 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set wildmenu		" display completion matches in a status line
+set history=200         " keep 200 lines of command line history
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set wildmenu            " display completion matches in a status line
 
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+set ttimeout            " time out for key codes
+set ttimeoutlen=100     " wait up to 100ms after Esc for special key
 
 " Show @@@ in the last line if it is truncated.
 set display=truncate
@@ -144,3 +142,18 @@ if !exists(":DiffOrig")
   \ | wincmd p | diffthis
 endif
 
+""" Personal
+set number relativenumber
+set smarttab
+set background=dark
+set t_Co=256
+
+set list
+set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t\|\t/
+
+set hlsearch
+
+let g:airline_powerline_fonts = 1
