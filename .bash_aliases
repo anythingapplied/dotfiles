@@ -24,5 +24,5 @@ alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 
 # Custom
-alias config='/usr/bin/git --git-dir=/home/dan/.cfg/ --work-tree=/home/dan'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias tmux='tmux -2'

@@ -143,10 +143,16 @@ if !exists(":DiffOrig")
 endif
 
 """ Personal
+set noerrorbells
 set number relativenumber
 set smarttab
+set smartcase
 set background=dark
 set t_Co=256
+
+set noswapfile
+set undodir=~/.vim/undodir
+set undofile
 
 set list
 set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
@@ -157,3 +163,4 @@ match ExtraWhitespace /\s\+$\| \+\ze\t\|\t/
 set hlsearch
 
 let g:airline_powerline_fonts = 1
+let g:tmuxline_powerline_separators = 1
