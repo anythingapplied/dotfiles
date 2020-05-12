@@ -16,6 +16,7 @@ Plugin 'takac/vim-hardtime'
 Plugin 'preservim/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'EricGebhart/SAS-Vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -159,6 +160,10 @@ nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
+
+map <leader>r :call RunSASonCurrentFile()<CR>
+map <leader>l :call LoadSASLogLst()<CR>
+map <leader>c :call CheckSASLog()<CR>
 
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gh :diffget //3<CR>

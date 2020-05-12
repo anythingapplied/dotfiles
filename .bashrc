@@ -115,3 +115,4 @@ settitle ()
 source ~/.git-prompt.sh
 export PS1='[\w$(__git_ps1 " (%s)")]\$ '
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.8/lib-dynload/
+export PATH=$PATH:/e/Program\ Files/SASHome/SASFoundation/9.4/
