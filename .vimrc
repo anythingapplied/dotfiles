@@ -107,16 +107,24 @@ endif
 set noerrorbells
 set vb t_vb=
 set number relativenumber
+set numberwidth=5
 set smarttab
+set ignorecase
 set smartcase
 set cursorline
+set cursorcolumn
+set ttyfast
+set splitbelow
+set splitright
+set wildmode=list:longest,list:full
+set diffopt+=vertical
 
 set t_Co=256
 set background=dark
 set colorcolumn=80
 highlight ColorColumn ctermbg=7
 
-set noswapfile
+" set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 
@@ -134,7 +142,14 @@ let g:tmuxline_powerline_separators = 1
 
 let mapleader = ","
 
-nnoremap <leader>vc :e ~/.vimrc<cr>
+nnoremap <leader>vc :e $MYVIMRC<CR>
+nnoremap <leader>vv :source $MYVIMRC<CR>
+nnoremap <leader><leader> <C-^>
+nnoremap <leader>s :mksession<CR>
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>h <C-w>h
+nnoremap <leader>l <C-w>l
 
 let g:hardtime_default_on = 1
 
@@ -143,4 +158,9 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-inoremap jj <esc>l
+" inoremap <silent> <Up> <ESC><Up>
+" inoremap <silent> <Down> <ESC><Down>
+
+inoremap jj <esc>`^
+
+nnoremap <silent> <F2> :set list!<CR>
