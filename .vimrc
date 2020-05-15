@@ -1,54 +1,21 @@
-""" Vundle
+set nocompatible
+filetype off
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-""" gc comment target motion
 Plugin 'tpope/vim-commentary'
-
-""" Change surrounding ' to " - cs'"
-""" Add surrounding " ysiw"
 Plugin 'tpope/vim-surround'
-
 Plugin 'tpope/vim-repeat'
-
 Plugin 'tpope/vim-fugitive'
-
 Plugin 'airblade/vim-gitgutter'
-
 Plugin 'vim-airline/vim-airline'
-
 Plugin 'edkolev/tmuxline.vim'
-
 Plugin 'takac/vim-hardtime'
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
-""" End Vundle
+call vundle#end()
+filetype plugin indent on
 
 
 """ From Default Config
@@ -108,13 +75,6 @@ endif
 " Only do this part when Vim was compiled with the +eval feature.
 if 1
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  " Revert with ":filetype off".
-  filetype plugin indent on
-
   " Put these in an autocmd group, so that you can revert them with:
   " ":augroup vimStartup | au! | augroup END"
   augroup vimStartup
@@ -143,12 +103,18 @@ if !exists(":DiffOrig")
 endif
 
 """ Personal
+
 set noerrorbells
+set vb t_vb=
 set number relativenumber
 set smarttab
 set smartcase
-set background=dark
+set cursorline
+
 set t_Co=256
+set background=dark
+set colorcolumn=80
+highlight ColorColumn ctermbg=7
 
 set noswapfile
 set undodir=~/.vim/undodir
@@ -157,10 +123,24 @@ set undofile
 set list
 set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t\|\t/
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd BufWritePre * %s/\s\+$//e
 
 set hlsearch
 
 let g:airline_powerline_fonts = 1
 let g:tmuxline_powerline_separators = 1
+
+let mapleader = ","
+
+nnoremap <leader>vc :e ~/.vimrc<cr>
+
+let g:hardtime_default_on = 1
+
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+inoremap jj <esc>l
