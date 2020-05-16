@@ -118,6 +118,8 @@ set splitbelow
 set splitright
 set wildmode=list:longest,list:full
 set diffopt+=vertical
+set lazyredraw
+set hidden
 
 set t_Co=256
 set background=dark
@@ -158,8 +160,8 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" inoremap <silent> <Up> <ESC><Up>
-" inoremap <silent> <Down> <ESC><Down>
+inoremap <silent> <Up> <ESC><Up>
+inoremap <silent> <Down> <ESC><Down>
 
 inoremap jj <esc>`^
 
