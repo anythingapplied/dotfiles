@@ -72,26 +72,14 @@ if &t_Co > 2 || has("gui_running")
   let c_comment_strings=1
 endif
 
-" Only do this part when Vim was compiled with the +eval feature.
-if 1
-
-  " Put these in an autocmd group, so that you can revert them with:
-  " ":augroup vimStartup | au! | augroup END"
-  augroup vimStartup
-    au!
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid, when inside an event handler
-    " (happens when dropping a file on gvim) and for a commit message (it's
-    " likely a different one than last time).
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-      \ |   exe "normal! g`\""
-      \ | endif
-
-  augroup END
-
-endif
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+\ |   exe "normal! g`\""
+\ | endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -111,20 +99,22 @@ set numberwidth=5
 set smarttab
 set ignorecase
 set smartcase
-set cursorline
-set cursorcolumn
-set ttyfast
+if &modifiable
+  setlocal cursorline
+  setlocal cursorcolumn
+  setlocal colorcolumn=80
+  highlight ColorColumn ctermbg=7
+endif
 set splitbelow
 set splitright
 set wildmode=list:longest,list:full
 set diffopt+=vertical
+set ttyfast
 set lazyredraw
 set hidden
 
 set t_Co=256
 set background=dark
-set colorcolumn=80
-highlight ColorColumn ctermbg=7
 
 " set noswapfile
 set undodir=~/.vim/undodir
@@ -165,4 +155,5 @@ inoremap <silent> <Down> <ESC><Down>
 
 inoremap jj <esc>`^
 
-nnoremap <silent> <F2> :set list!<CR>
+nnoremap <silent> <F2> :set list!<Bar>set list?<CR>
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
