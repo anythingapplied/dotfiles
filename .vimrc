@@ -129,8 +129,13 @@ autocmd BufWritePre * %s/\s\+$//e
 
 set hlsearch
 
-let g:airline_powerline_fonts = 1
-let g:tmuxline_powerline_separators = 1
+if $USER == "dan"
+  let g:airline_powerline_fonts = 1
+  let g:tmuxline_powerline_separators = 1
+else
+  let g:airline_powerline_fonts = 0
+  let g:tmuxline_powerline_separators = 0
+endif
 
 let mapleader = ","
 
