@@ -13,10 +13,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'takac/vim-hardtime'
+Plugin 'preservim/nerdtree'
+Plugin 'jlanzarotta/bufexplorer'
 
 call vundle#end()
 filetype plugin indent on
-
 
 """ From Default Config
 
@@ -162,3 +163,12 @@ inoremap jj <esc>`^
 
 nnoremap <silent> <F2> :set list!<Bar>set list?<CR>
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
+" Allows switching of cursor style in mintty
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks = 1
