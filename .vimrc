@@ -113,6 +113,8 @@ set diffopt+=vertical
 set ttyfast
 set lazyredraw
 set hidden
+set hlsearch
+set autoread
 
 set t_Co=256
 set background=dark
@@ -124,11 +126,8 @@ set undofile
 set list
 set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
 
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Removes trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-
-set hlsearch
 
 if $USER == "dan"
   let g:airline_powerline_fonts = 1
