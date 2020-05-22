@@ -153,8 +153,10 @@ nnoremap <leader>gs :G<CR>
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gu :diffget //2<CR>
 
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
 
-let g:hardtime_default_on = 1
+" let g:hardtime_default_on = 1
 
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
@@ -175,5 +177,5 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
