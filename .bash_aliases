@@ -26,3 +26,4 @@ alias l='ls -CF'                              #
 # Custom
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias tmux='tmux -2'
+alias ipython='winpty ipython'
