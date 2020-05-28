@@ -15,6 +15,7 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'takac/vim-hardtime'
 Plugin 'preservim/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'ycm-core/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
@@ -113,6 +114,9 @@ set diffopt+=vertical
 set ttyfast
 set lazyredraw
 set hidden
+set hlsearch
+set autoread
+set pyxversion=3
 
 set t_Co=256
 set background=dark
@@ -124,11 +128,18 @@ set undofile
 set list
 set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
 
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Removes trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-set hlsearch
+ autocmd FileType python
+     \ setlocal tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ expandtab
+     \ autoindent
+     \ fileformat=unix
+set encoding=utf-8
 
 if $USER == "dan"
   let g:airline_powerline_fonts = 1
@@ -149,7 +160,14 @@ nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
 
-let g:hardtime_default_on = 1
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gh :diffget //3<CR>
+nnoremap <leader>gu :diffget //2<CR>
+
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+
+" let g:hardtime_default_on = 1
 
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
@@ -170,5 +188,10 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
+
+let g:python3_host_prog="/bin/python3"
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
