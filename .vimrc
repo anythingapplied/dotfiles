@@ -129,6 +129,9 @@ set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
 " Removes trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+" Source vimrc on write
+autocmd BufWritePost .vimrc source $MYVIMRC
+
 if $USER == "dan"
   let g:airline_powerline_fonts = 1
   let g:tmuxline_powerline_separators = 1
@@ -139,8 +142,7 @@ endif
 
 let mapleader = ","
 
-nnoremap <leader>vc :e $MYVIMRC<CR>
-nnoremap <leader>vv :source $MYVIMRC<CR>
+nnoremap <leader>vv :e $MYVIMRC<CR>
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>s :mksession<CR>
 nnoremap <leader>j <C-w>j
