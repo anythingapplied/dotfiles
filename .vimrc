@@ -15,6 +15,7 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'takac/vim-hardtime'
 Plugin 'preservim/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'ycm-core/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
@@ -115,6 +116,7 @@ set lazyredraw
 set hidden
 set hlsearch
 set autoread
+set pyxversion=3
 
 set t_Co=256
 set background=dark
@@ -131,6 +133,16 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " Source vimrc on write
 autocmd BufWritePost .vimrc source $MYVIMRC
+
+autocmd FileType python
+     \ setlocal tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ expandtab
+     \ autoindent
+     \ fileformat=unix
+set encoding=utf-8
 
 if $USER == "dan"
   let g:airline_powerline_fonts = 1
@@ -180,3 +192,8 @@ let &t_te.="\e[0 q"
 
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
+
+let g:python3_host_prog="/bin/python3"
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
