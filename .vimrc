@@ -161,9 +161,12 @@ nnoremap <leader>k <C-w>k
 nnoremap <leader>h <C-w>h
 nnoremap <leader>l <C-w>l
 
-map <leader>r :call RunSASonCurrentFile()<CR>
-map <leader>l :call LoadSASLogLst()<CR>
-map <leader>c :call CheckSASLog()<CR>
+nnoremap <leader>r :call RunSASonCurrentFile()<CR>
+nnoremap <leader>l :call LoadSASLogLst()<CR>
+nnoremap <leader>c :call CheckSASLog()<CR>
+
+nnoremap <leader>' vap<C-v>I'<esc>gv$A',<esc>gvgJ$r;:s/\(.\{-\},\)\{10\}/&\r/g<CR>:nohlsearch<CR>
+vnoremap <leader>' <C-v>I'<esc>gv$A',<esc>gvgJ$r;:s/\(.\{-\},\)\{10\}/&\r/g<CR>:nohlsearch<CR>
 
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gh :diffget //3<CR>
