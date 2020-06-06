@@ -131,7 +131,10 @@ set listchars=eol:$,tab:├─,trail:·,nbsp:⎵
 " Removes trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
- autocmd FileType python
+" Source vimrc on write
+autocmd BufWritePost .vimrc source $MYVIMRC
+
+autocmd FileType python
      \ setlocal tabstop=4
      \ softtabstop=4
      \ shiftwidth=4
@@ -151,8 +154,7 @@ endif
 
 let mapleader = ","
 
-nnoremap <leader>vc :e $MYVIMRC<CR>
-nnoremap <leader>vv :source $MYVIMRC<CR>
+nnoremap <leader>vv :e $MYVIMRC<CR>
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>s :mksession<CR>
 nnoremap <leader>j <C-w>j
