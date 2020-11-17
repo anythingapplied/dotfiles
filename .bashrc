@@ -114,5 +114,11 @@ settitle ()
 
 source ~/.git-prompt.sh
 export PS1='[\w$(__git_ps1 " (%s)")]\$ '
-export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.8/lib-dynload/
-export PATH=$PATH:/e/Program\ Files/SASHome/SASFoundation/9.4/
+# export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.8/lib-dynload/
+export PATH="~/.local/python-3.9.0-embed-amd64:$PATH"
+export PATH="~/.local/python-3.9.0-embed-amd64/Scripts:$PATH"
+export PATH="$PATH:/e/Program Files/Teradata/Client/14.10/ODBC Driver for Teradata nt-x8664/Lib:/e/Program Files/Teradata/Client/14.10/bin"
+export PATH="$PATH:/e/Program Files/SASHome/SASFoundation/9.4"
+
+
+# export PATH="/e/oracle64/product/11.2.0.4/client_1/bin:/c/Windows/system32:/c/Windows:/c/Windows/SysWOW64:/c/Windows/System32/Wbem:/c/Windows/Windows/SysWOW64/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/c/Windows/SysWOW64/WindowsPowerShell/v1.0:/c/Program Files/Microsoft Network Monitor 3/:/c/Program Files/HP/HP BTO Software/bin:/c/Program Files/HP/HP BTO Software/bin/win64:/c/Program Files/HP/HP BTO Software/lib:/c/Program Files/HP/HP BTO Software/bin/win64/OpC:/e/Oracle/:/e/Oracle/bin:/e/Program Files/Sybase/shared/Sybase Central 6.1.0/win64:/e/Program Files/Sybase/IQ-15_4/Bin32:/e/Program Files/Sybase/IQ-15_4/Bin64:/e/Program Files/Teradata/Client/14.10/ODBC Driver for Teradata nt-x8664/Lib:/e/Program Files/Teradata/Client/14.10/bin:/e/Program Files/IBM/SQLLIB/BIN:/e/Program Files/IBM/SQLLIB/FUNCTION:/e/Program Files/IBM/SQLLIB/SAMPLES/REPL:/e/Program Files/IBM/Client Access/Emulator:/e/Program Files/IBM/Client Access/Shared:/e/Program Files/IBM/Client Access/:/e/Program Files/TortoiseSVN/bin:/e/Program Files/CollabNet/Subversion Client:/e/Program Files/SASHome/x86/Secure/ccme4:/e/Program Files/SASHome/Secure/ccme4:/c/opscode/chef/bin:$PATH"
