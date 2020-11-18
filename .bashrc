@@ -114,4 +114,7 @@ settitle ()
 
 source ~/.git-prompt.sh
 export PS1='[\w$(__git_ps1 " (%s)")]\$ '
-export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.8/lib-dynload/
+
+export PATH="/c/Users/dan/Anaconda3:$PATH"
+export PATH="/c/Users/dan/Anaconda3/Scripts:$PATH"
+export PATH="/c/Users/dan/Anaconda3/condabin:$PATH"
