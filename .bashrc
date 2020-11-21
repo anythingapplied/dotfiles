@@ -111,10 +111,25 @@ settitle ()
 #
 # alias cd=cd_func
 
-
 source ~/.git-prompt.sh
 export PS1='[\w$(__git_ps1 " (%s)")]\$ '
 
-export PATH="/c/Users/dan/Anaconda3:$PATH"
-export PATH="/c/Users/dan/Anaconda3/Scripts:$PATH"
-export PATH="/c/Users/dan/Anaconda3/condabin:$PATH"
+CONDAPATH="/c/Users/dan/Anaconda3"
+
+export PATH="$CONDAPATH:$PATH"
+export PATH="$CONDAPATH/Library/mingw-w64/bin:$PATH"
+export PATH="$CONDAPATH/Library/usr/bin:$PATH"
+export PATH="$CONDAPATH/Library/bin:$PATH"
+export PATH="$CONDAPATH/Scripts:$PATH"
+export PATH="$CONDAPATH/bin:$PATH"
+export PATH="$CONDAPATH/condabin:$PATH"
+
+# export PATH="/c/Program Files (x86)/Common Files/Oracle/Java/javapath:$PATH"
+# export PATH="/c/WINDOWS/system32:$PATH"
+# export PATH="/c/WINDOWS:$PATH"
+# export PATH="/c/WINDOWS/System32/Wbem:$PATH"
+# export PATH="/c/WINDOWS/System32/WindowsPowerShell/v1.0:$PATH"
+# export PATH="/c/WINDOWS/System32/OpenSSH:$PATH"
+# export PATH="/c/Program Files/Microsoft VS Code/bin:$PATH"
+# export PATH="/c/Users/dan/AppData/Local/Microsoft/WindowsApps:$PATH"
+# export PATH="/c/Users/dan/AppData/Local/Programs/Git/cmd:$PATH"
