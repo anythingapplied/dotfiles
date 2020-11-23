@@ -113,9 +113,9 @@ settitle ()
 
 source ~/.git-prompt.sh
 export PS1='[\w$(__git_ps1 " (%s)")]\$ '
+# export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.8/lib-dynload/
 
 CONDAPATH="/c/Users/dan/Anaconda3"
-
 export PATH="$CONDAPATH:$PATH"
 export PATH="$CONDAPATH/Library/mingw-w64/bin:$PATH"
 export PATH="$CONDAPATH/Library/usr/bin:$PATH"
@@ -123,6 +123,7 @@ export PATH="$CONDAPATH/Library/bin:$PATH"
 export PATH="$CONDAPATH/Scripts:$PATH"
 export PATH="$CONDAPATH/bin:$PATH"
 export PATH="$CONDAPATH/condabin:$PATH"
+export PYTHONPATH=$PYTHONPATH:$CONDAPATH/envs/env3/DLLs
 
 # export PATH="/c/Program Files (x86)/Common Files/Oracle/Java/javapath:$PATH"
 # export PATH="/c/WINDOWS/system32:$PATH"

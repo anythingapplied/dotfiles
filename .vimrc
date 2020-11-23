@@ -11,7 +11,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
+" Plugin 'edkolev/tmuxline.vim'
 Plugin 'takac/vim-hardtime'
 Plugin 'preservim/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
@@ -152,6 +152,7 @@ else
   let g:tmuxline_powerline_separators = 0
 endif
 
+
 let mapleader = ","
 
 nnoremap <leader>vv :e $MYVIMRC<CR>
@@ -183,7 +184,7 @@ inoremap <silent> <Down> <ESC><Down>
 
 inoremap jj <esc>`^
 
-nnoremap <silent> <F2> :set list!<Bar>set list?<CR>
+nnoremap <silent> <F2> :set number!<CR>:set relativenumber!<CR>:set list!<Bar>set list?<CR>
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
 " Allows switching of cursor style in mintty
@@ -195,7 +196,6 @@ let &t_te.="\e[0 q"
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
 
-let g:python3_host_prog="/bin/python3"
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
@@ -213,5 +213,5 @@ function! FzyCommand(choice_command, vim_command)
 endfunction
 
 nnoremap <leader>e :call FzyCommand("find . -type f", ":e")<cr>
-nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
+" nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("find . -type f", ":sp")<cr>
