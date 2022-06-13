@@ -262,11 +262,41 @@ lvim.plugins = {
 
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-  { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
-  { "BufWritePre", "*", "%s/\\s\\+$//e" },
-  { "TermOpen", "*", [[tnoremap <buffer> <Esc> <c-\><c-n>]] },
-  { "TermOpen", "*", "startinsert" },
-  { "TermEnter", "*", "startinsert" },
-  { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber" },
+lvim.autocmds = {
+  { "BufWinEnter",
+    {
+      pattern = { "*.lua" },
+      command = "setlocal ts=8 sw=8",
+    },
+  },
+  { "BufWritePre",
+    {
+      pattern = { "*" },
+      command = "%s/\\s\\+$//e",
+    },
+  },
+  { "TermOpen",
+    {
+      pattern = { "*" },
+      command = [[tnoremap <buffer> <Esc> <c-\><c-n>]],
+    },
+  },
+  { "TermOpen",
+    {
+      pattern = { "*" },
+      command = "startinsert",
+    },
+  },
+  { "TermEnter",
+    {
+      pattern = { "*" },
+      command = "startinsert",
+    },
+  },
+  { "TermOpen",
+    {
+      pattern = { "*" },
+      command = "setlocal listchars= nonumber norelativenumber",
+    },
+  },
 }
