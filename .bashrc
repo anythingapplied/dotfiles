@@ -33,7 +33,9 @@ shopt -s histappend
 #
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
+
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.

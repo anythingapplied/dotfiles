@@ -43,6 +43,7 @@ lvim.keys.visual_mode[",'"] = "<C-v>I'<ESC>gv$A',<ESC>gvgJ$r<CMD>keeppatterns s/
 lvim.keys.normal_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>"
 lvim.keys.visual_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>gv"
 -- lvim.keys.normal_mode["<leader>C"] = "<CMD>BufferKill!<CR>"
+lvim.keys.normal_mode["<leader>x"] = "<CMD>enew | setlocal bt=nofile bh=hide noswapfile nu | file Scratch<CR>"
 
 lvim.keys.insert_mode["<C-l>"] = "<ESC><C-w>l"
 lvim.keys.insert_mode["<C-h>"] = "<ESC><C-w>h"
