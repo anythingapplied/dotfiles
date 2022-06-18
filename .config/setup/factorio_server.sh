@@ -1,4 +1,3 @@
-set -e
 # Docker Install
 sudo apt-get install \
     ca-certificates \
@@ -17,9 +16,9 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # Add Me as Docker User
 sudo groupadd docker
 sudo usermod -aG docker $USER
-newgrp docker
+sudo newgrp docker
 
-useradd -m factorio --uid=845
+sudo useradd -m factorio --uid=845
 
 # Factorio Image
 sudo mkdir -p /opt/factorio
@@ -35,4 +34,5 @@ docker stop factorio
 cp -r ~/gdrive/factorio/server/saves /opt/factorio/
 cp -r ~/gdrive/factorio/server/mods /opt/factorio/
 cp ~/gdrive/factorio/server/config/server-settings.json /opt/factorio/config/
+sudo chown -R factorio:factorio /opt/factorio/
 docker start factorio

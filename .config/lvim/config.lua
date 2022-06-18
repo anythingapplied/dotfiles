@@ -20,6 +20,7 @@ vim.opt.showmode = true
 vim.opt.laststatus = 3
 vim.opt.startofline = true
 vim.opt.confirm = true
+vim.wrap = true
 vim.g["loaded_node_provider"] = 0
 vim.g["loaded_perl_provider"] = 0
 vim.g["loaded_ruby_provider"] = 0
@@ -32,6 +33,7 @@ lvim.keys.insert_mode["<C-s>"] = "<ESC><CMD>w<CR>"
 lvim.keys.normal_mode["<Tab>"] = "<CMD>BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = "<CMD>BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode[",<Tab>"] = "<CMD>tabNext<CR>"
+lvim.keys.normal_mode[",<S-Tab>"] = "<CMD>tabprevious<CR>"
 lvim.keys.normal_mode["<CR>"] = "<CMD>nohlsearch<CR><CR>"
 lvim.builtin.which_key.mappings["h"] = nil
 lvim.keys.normal_mode[",,"] = "<C-^>"
@@ -43,12 +45,24 @@ lvim.keys.visual_mode[",'"] = "<C-v>I'<ESC>gv$A',<ESC>gvgJ$r<CMD>keeppatterns s/
 lvim.keys.normal_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>"
 lvim.keys.visual_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>gv"
 -- lvim.keys.normal_mode["<leader>C"] = "<CMD>BufferKill!<CR>"
-lvim.keys.normal_mode["<leader>x"] = "<CMD>enew | setlocal bt=nofile bh=hide noswapfile nu | file Scratch<CR>"
+lvim.builtin.which_key.mappings['x'] = {
+  "<CMD>enew | setlocal bt=nofile bh=hide noswapfile nu | file Scratch<CR>", "Scratch"
+}
 
 lvim.keys.insert_mode["<C-l>"] = "<ESC><C-w>l"
 lvim.keys.insert_mode["<C-h>"] = "<ESC><C-w>h"
 lvim.keys.insert_mode["<C-k>"] = "<ESC><C-w>k"
 lvim.keys.insert_mode["<C-j>"] = "<ESC><C-w>j"
+
+-- lvim.keys.normal_mode["<leader>y"] = "\"+y"
+-- lvim.keys.normal_mode["<leader>p"] = "\"+p"
+-- lvim.keys.normal_mode["<leader>P"] = "\"+P"
+-- lvim.keys.normal_mode["<leader>d"] = "\"+d"
+
+-- lvim.keys.visual_mode["<leader>y"] = "\"+y"
+-- lvim.keys.visual_mode["<leader>p"] = "\"+p"
+-- lvim.keys.visual_mode["<leader>P"] = "\"+P"
+-- lvim.keys.visual_mode["<leader>d"] = "\"+d"
 
 -- gcc fix
 vim.api.nvim_set_keymap('o', 'c', '^', { noremap = true, silent = true })
@@ -239,6 +253,7 @@ lvim.plugins = {
   { "kana/vim-textobj-user" },
   { "GCBallesteros/vim-textobj-hydrogen" },
   { "szw/vim-maximizer" },
+  { "lambdalisue/suda.vim" },
   -- { "folke/tokyonight.nvim" },
 }
 

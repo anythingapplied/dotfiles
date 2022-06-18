@@ -1,0 +1,16 @@
+https://www.binarytides.com/gorgeous-looking-fonts-ubuntu-linux/
+
+http://www.google.com/fonts/
+Here is a list of the fonts you shall need.
+
+1. Droid Sans
+2. Droid Sans Mono
+3. Droid Serif
+
+4. Noto Sans
+5. Noto Serif
+
+6. Open Sans
+
+.fonts.conf
+https://gist.github.com/silv3rm00n/5599072

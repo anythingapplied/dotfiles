@@ -1,0 +1,5 @@
+# https://www.helpwire.app/blog/chrome-remote-desktop-linux/
+
+wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb -P /tmp
+apt install /tmp/chrome-remote-desktop_current_amd64.deb
+mkdir ~/.config/chrome-remote-desktop

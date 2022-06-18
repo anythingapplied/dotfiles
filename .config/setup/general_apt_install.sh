@@ -1,4 +1,3 @@
-set -e
 # Command Line Tools
 sudo apt install \
   exa \
@@ -6,16 +5,20 @@ sudo apt install \
   fzf \
   zoxide \
   tmux \
-  tmux-plugin-manager \
   xclip \
-  ripgrep
+  ripgrep \
+  net-tools \
+  tree
+
+# Tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Applications
 sudo apt install \
   keepassxc \
   kitty \
   libreoffice \
-  google-chrome-stable
+  gnome-tweaks
 
 # Programming
 sudo apt install \
@@ -32,5 +35,13 @@ rm ~/discord.deb
 # Games
 sudo add-apt-repository multiverse
 sudo apt update
-sudo apt install multimc
 sudo apt install steam
+
+# Chrome
+wget -O ~/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo gdebi ~/google-chrome-stable_current_amd64.deb
+rm ~/google-chrome-stable_current_amd64.deb
+
+# Minecraft Launcher
+wget https://files.multimc.org/downloads/multimc_1.6-1.deb
+sudo gdebi multimc_1.6-1.deb

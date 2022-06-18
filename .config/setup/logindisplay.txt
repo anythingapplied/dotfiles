@@ -1,0 +1,7 @@
+# https://askubuntu.com/questions/1043337/is-there-to-make-the-login-screen-appear-on-the-external-display-in-18-04#:~:text=Go%20into%20Settings%20%3E%20Devices%20%3E%20Displays,Copy%20your%20user's%20monitors.
+1. Go into Settings > Devices > Displays and configure your monitors the way you want for your login screen (in your case, internal laptop display disabled). Click the "Save" button when done.
+2. Copy your user's monitors.xml file into the home folder for gdm user.
+To copy the monitors.xml file, open a terminal and perform the following:
+
+sudo cp ~/.config/monitors.xml ~gdm/.config/monitors.xml
+sudo chown gdm:gdm ~gdm/.config/monitors.xml
