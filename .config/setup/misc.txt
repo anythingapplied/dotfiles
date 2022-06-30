@@ -1,0 +1,4 @@
+sudo nano /etc/default/grub
+change the GRUB_TIMEOUT value to 2 or 3
+save
+sudo update-grub

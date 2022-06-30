@@ -20,7 +20,7 @@ vim.opt.showmode = true
 vim.opt.laststatus = 3
 vim.opt.startofline = true
 vim.opt.confirm = true
-vim.wrap = true
+vim.opt.wrap = true
 vim.g["loaded_node_provider"] = 0
 vim.g["loaded_perl_provider"] = 0
 vim.g["loaded_ruby_provider"] = 0
@@ -254,6 +254,8 @@ lvim.plugins = {
   { "GCBallesteros/vim-textobj-hydrogen" },
   { "szw/vim-maximizer" },
   { "lambdalisue/suda.vim" },
+  -- { "vimwiki/vimwiki" },
+  -- { "tools-life/taskwiki" },
   -- { "folke/tokyonight.nvim" },
 }
 

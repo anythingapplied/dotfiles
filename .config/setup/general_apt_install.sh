@@ -8,7 +8,8 @@ sudo apt install \
   xclip \
   ripgrep \
   net-tools \
-  tree
+  tree \
+  taskwarrior
 
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

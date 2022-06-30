@@ -43,3 +43,5 @@ config checkout
 config config status.showUntrackedFiles no
 config config --global user.name "$USER"
 config config --global user.email $EMAIL
+config remote set-url origin git@github.com:anythingapplied/dotfiles.git
+config push --set-upstream origin master

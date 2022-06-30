@@ -1,8 +1,11 @@
 if [ -d "$HOME/bin" ] ; then
-	  PATH="$PATH:$HOME/bin"
+	  export PATH="$PATH:$HOME/bin"
 fi
 if [ -d "$HOME/.local/bin" ] ; then
-	  PATH="$PATH:$HOME/.local/bin"
+	  export PATH="$PATH:$HOME/.local/bin"
+fi
+if [ -d "$HOME/.poetry/bin" ] ; then
+	  export PATH="$PATH:$HOME/.poetry/bin"
 fi
 
 # Make bash append rather than overwrite the history on disk
@@ -53,3 +56,7 @@ fi
 
 eval "$(starship init bash)"
 
+export EDITOR=/home/dan/.local/bin/lvim
+export VISUAL=/home/dan/.local/bin/lvim
+
+source /usr/share/doc/fzf/examples/key-bindings.bash

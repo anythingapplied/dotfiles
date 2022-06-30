@@ -1,0 +1,4 @@
+sudo apt install x11vnc
+
+edit /etc/gdm3/custom.conf
+WaylandEnable=false
