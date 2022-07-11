@@ -50,8 +50,8 @@ export PROMPT_COMMAND="history -a"
 
 # Aliases
 
-if [ -f "${HOME}/.bash_aliases" ]; then
-  source "${HOME}/.bash_aliases"
+if [ -f "$HOME/.bash_aliases" ]; then
+  source "$HOME/.bash_aliases"
 fi
 
 eval "$(starship init bash)"

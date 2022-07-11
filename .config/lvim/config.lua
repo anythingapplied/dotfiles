@@ -24,6 +24,7 @@ vim.opt.wrap = true
 vim.g["loaded_node_provider"] = 0
 vim.g["loaded_perl_provider"] = 0
 vim.g["loaded_ruby_provider"] = 0
+-- setglobal commentstring=# %s
 
 -- ## Keymappings ## --
 -- keymappings [view all the defaults by pressing <leader>Lk]

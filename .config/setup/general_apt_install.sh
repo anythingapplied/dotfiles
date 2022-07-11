@@ -1,6 +1,7 @@
 # Command Line Tools
 sudo apt install \
   exa \
+  bat \
   fd-find \
   fzf \
   zoxide \

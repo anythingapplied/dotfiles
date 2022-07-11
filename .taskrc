@@ -48,3 +48,10 @@ taskd.ca=/home/dan/.config/taskwarrior/ca.cert.pem
 taskd.server=inthe.am:53589
 taskd.credentials=inthe_am/anythingjewish/33b08c74-d625-4fcf-a277-749b9704ba5b
 taskd.trust=strict
+
+
+report.next.description=Simple list of open tasks by project
+report.next.columns=id,project,description.combined
+report.next.labels=ID,Proj,Desc
+report.next.sort=project+,entry+
+report.next.filter=status:pending

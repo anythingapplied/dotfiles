@@ -25,12 +25,12 @@ alias l='ls -CF'                              #
 
 # Custom
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias tmux='tmux -2 new -As0'
+alias tmux='tmux -2 new -As0 -c ~'
 alias apt='sudo apt'
 alias untar='tar -xvaf'
 
 type exa >/dev/null 2>&1 && alias ls=exa
-type bat >/dev/null 2>&1 && alias cat=bat
+type batcat >/dev/null 2>&1 && alias cat=batcat
 type z >/dev/null 2>&1 && alias cd=z
 type nvim >/dev/null 2>&1 && alias vim=nvim
 type lvim >/dev/null 2>&1 && alias vim=lvim
