@@ -1,17 +1,7 @@
---[[
-lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
-]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- ## General ## --
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "dracula"
+lvim.colorscheme = "gruvbox"
 
 vim.cmd [[ set mouse-=a ]]
 vim.opt.listchars = { tab = "├─", trail = "·", nbsp = "⎵" }
@@ -24,10 +14,9 @@ vim.opt.wrap = true
 vim.g["loaded_node_provider"] = 0
 vim.g["loaded_perl_provider"] = 0
 vim.g["loaded_ruby_provider"] = 0
--- setglobal commentstring=# %s
 
 -- ## Keymappings ## --
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- view all the defaults by pressing <leader>Lk
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = "<CMD>w<CR>"
 lvim.keys.insert_mode["<C-s>"] = "<ESC><CMD>w<CR>"
@@ -38,8 +27,8 @@ lvim.keys.normal_mode[",<S-Tab>"] = "<CMD>tabprevious<CR>"
 lvim.keys.normal_mode["<CR>"] = "<CMD>nohlsearch<CR><CR>"
 lvim.builtin.which_key.mappings["h"] = nil
 lvim.keys.normal_mode[",,"] = "<C-^>"
-lvim.keys.insert_mode["<Up>"] = "<ESC><Up>"
-lvim.keys.insert_mode["<Down>"] = "<ESC><Down>"
+-- lvim.keys.insert_mode["<Up>"] = "<ESC><Up>"
+-- lvim.keys.insert_mode["<Down>"] = "<ESC><Down>"
 lvim.keys.normal_mode["<F2>"] = "<CMD>set number!<CR><CMD>set list!<Bar>set list?<CR>"
 lvim.keys.visual_mode["p"] = "\"_dP"
 lvim.keys.visual_mode[",'"] = "<C-v>I'<ESC>gv$A',<ESC>gvgJ$r<CMD>keeppatterns s/\\(.\\{-\\},\\)\\{10\\}/&\r/g<CR>"
@@ -49,6 +38,13 @@ lvim.keys.visual_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>gv"
 lvim.builtin.which_key.mappings['x'] = {
   "<CMD>enew | setlocal bt=nofile bh=hide noswapfile nu | file Scratch<CR>", "Scratch"
 }
+
+-- for neoscroll support
+lvim.keys.normal_mode["<PageUp>"] = { '<C-b>', { remap = true } }
+lvim.keys.normal_mode["<PageDown>"] = { '<C-f>', { remap = true } }
+lvim.keys.visual_mode["<PageUp>"] = { '<C-b>', { remap = true } }
+lvim.keys.visual_mode["<PageDown>"] = { '<C-f>', { remap = true } }
+
 
 lvim.keys.insert_mode["<C-l>"] = "<ESC><C-w>l"
 lvim.keys.insert_mode["<C-h>"] = "<ESC><C-w>h"
@@ -65,57 +61,11 @@ lvim.keys.insert_mode["<C-j>"] = "<ESC><C-w>j"
 -- lvim.keys.visual_mode["<leader>P"] = "\"+P"
 -- lvim.keys.visual_mode["<leader>d"] = "\"+d"
 
--- gcc fix
+
+-- comment line gcc fix
 vim.api.nvim_set_keymap('o', 'c', '^', { noremap = true, silent = true })
 
--- ## Ripple Settings ## --
-vim.g["ripple_enable_mappings"] = 0
-vim.g["ripple_always_return"] = 1
-lvim.keys.normal_mode[",r"] = "m`v<Plug>(textobj-hydrogen-a)<Plug>(ripple_send_selection)``"
-lvim.keys.normal_mode[",n"] = "v<Plug>(textobj-hydrogen-a)<Plug>(ripple_send_selection)l<Plug>(textobj-hydrogen-n)"
-lvim.keys.visual_mode[",r"] = "<Plug>(ripple_send_selection)"
-lvim.keys.normal_mode[",o"] = "<Plug>(ripple_open_repl)"
--- lvim.keys.normal_mode[",c"] = "<plug>(iron-interrupt)"
-
--- ## Iron Keymaps ## --
--- lvim.keys.normal_mode["<localleader>t"] = "<Plug>(iron-send-motion)"
--- lvim.keys.normal_mode[",r"] = "v<Plug>(textobj-hydrogen-a)<Plug>(iron-visual-send)"
--- lvim.keys.normal_mode[",n"] = "v<Plug>(textobj-hydrogen-a)<Plug>(iron-visual-send)<Plug>(textobj-hydrogen-n)"
--- lvim.keys.visual_mode[",r"] = "<Plug>(iron-visual-send)"
--- lvim.keys.normal_mode["<localleader>r"] = "<Plug>(iron-repeat-cmd)"
--- lvim.keys.normal_mode["<localleader>l"] = "<Plug>(iron-send-line)"
--- lvim.keys.normal_mode["<localleader><CR>"] = "<Plug>(iron-cr)"
--- lvim.keys.normal_mode[",c"] = "<plug>(iron-interrupt)"
--- lvim.keys.normal_mode["<localleader>q"] = "<Plug>(iron-exit)"
--- lvim.keys.normal_mode["<localleader>c"] = "<Plug>(iron-clear)"
-
--- ## Cursor Correction ## --
--- vim.cmd [[ let &t_ti.="\e[1 q" ]]
--- vim.cmd [[ let &t_SI.="\e[5 q" ]]
--- vim.cmd [[ let &t_EI.="\e[1 q" ]]
--- vim.cmd [[ let &t_te.="\e[0 q" ]]
-
--- vim.cmd [[ if exists('$TMUX')
--- let &t_SI .= "\ePtmux;\e\e[=1c\e\\"
--- let &t_EI .= "\ePtmux;\e\e[=2c\e\\"
--- else
--- let &t_SI .= "\e[=1c"
--- let &t_EI .= "\e[=2c"
--- endif  ]]
-
--- vim.cmd [[ let &t_SI .= "\\ePtmux;\\e\\e[=1c\\e\\\\" ]]
--- vim.cmd [[ let &t_EI .= "\ePtmux;\e\e[=2c\e\\" ]]
-
--- vim.cmd [[ set guicursor=n-v-c:block-Cursori:ver100-iCursorn-v-c:blinkon0i:blinkwait10 ]]
-
--- vim.cmd [[ let &t_SI .= "\e[=1c" ]]
--- vim.cmd [[ let &t_EI .= "\e[=2c" ]]
-
--- unmap a default keymapping
--- lvim.keys.normal_mode["<C-Up>"] = false
--- edit a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = "<CMD>q<cr>"
-
+-- ## Builtins ## --
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 -- local _, actions = pcall(require, "telescope.actions")
@@ -146,7 +96,6 @@ lvim.keys.normal_mode[",o"] = "<Plug>(ripple_open_repl)"
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
 -- }
 
--- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 -- lvim.builtin.alpha.mode = "dashboard"
@@ -242,43 +191,121 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- }
 
 
-
 -- Additional Plugins
 lvim.plugins = {
-  -- { "hkupty/iron.nvim" },
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-obsession" },
-  { "urbainvaes/vim-ripple" },
-  { "Mofiqul/dracula.nvim" },
-  { "kana/vim-textobj-user" },
-  { "GCBallesteros/vim-textobj-hydrogen" },
   { "szw/vim-maximizer" },
-  { "lambdalisue/suda.vim" },
+  { "christoomey/vim-tmux-navigator" },
+  { "phaazon/hop.nvim" },
+  -- { "ivanov/vim-ipython" },
+  { "bfredl/nvim-ipy" },
+
+  -- ## colorscheme ##
+  { "morhetz/gruvbox" },
+  -- { "Mofiqul/dracula.nvim" },
+  -- { "folke/tokyonight.nvim" },
+
+  -- {
+  --   "jpalardy/vim-slime",
+  --   ft = { 'python' },
+  --   config = function()
+  --     vim.cmd([[
+  --     let g:slime_target = "tmux"
+  --     let g:slime_cell_delimiter = "^#\s*%%"
+  --     let g:slime_default_config = { "socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1" }
+  --     let g:slime_dont_ask_default = 1
+  --     let g:slime_bracketed_paste = 1
+  --     let g:slime_no_mappings = 1
+  --     let g:slime_python_ipython = 1
+  --     nmap <leader>rv <Plug>SlimeConfig
+  --     vmap <leader>rr <Plug>SlimeRegionSend
+  --     nmap <leader>rr <Plug>SlimeCellsSendAndGoToNext
+  --     nmap <leader>rj <Plug>SlimeCellsNext
+  --     nmap <leader>rk <Plug>SlimeCellsPrev
+  --     ]])
+  --   end
+  -- },
+
+  -- {
+  --   'klafyvel/vim-slime-cells',
+  --   requires = { { 'jpalardy/vim-slime', opt = true } },
+  --   ft = { 'python' },
+  -- },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    setup = function()
+      vim.g.indentLine_enabled = 1
+      vim.g.indent_blankline_char = "▏"
+      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+      vim.g.indent_blankline_buftype_exclude = { "terminal" }
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.g.indent_blankline_show_first_indent_level = false
+    end
+  },
+
+  {
+    "itchyny/vim-cursorword",
+    event = { "BufEnter", "BufNewFile" },
+    config = function()
+      vim.api.nvim_command("augroup user_plugin_cursorword")
+      vim.api.nvim_command("autocmd!")
+      vim.api.nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
+      vim.api.nvim_command("autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif")
+      vim.api.nvim_command("autocmd InsertEnter * let b:cursorword = 0")
+      vim.api.nvim_command("autocmd InsertLeave * let b:cursorword = 1")
+      vim.api.nvim_command("augroup END")
+    end
+  },
+
+  {
+    "ethanholz/nvim-lastplace",
+    event = "BufRead",
+    config = function()
+      require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = {
+          "gitcommit", "gitrebase", "svn", "hgcommit",
+        },
+        lastplace_open_folds = true,
+      })
+    end,
+  },
+
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require('neoscroll').setup({
+        -- All these keys will be mapped to their corresponding default scrolling animation
+        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        hide_cursor = true, -- Hide cursor while scrolling
+        stop_eof = true, -- Stop at <EOF> when scrolling downwards
+        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+        easing_function = nil, -- Default easing function
+        pre_hook = nil, -- Function to run before the scrolling animation starts
+        post_hook = nil, -- Function to run after the scrolling animation ends
+      })
+    end
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+
   -- { "vimwiki/vimwiki" },
   -- { "tools-life/taskwiki" },
-  -- { "folke/tokyonight.nvim" },
 }
-
--- local iron = require('iron')
--- iron.buflisted = true
--- iron.visibility = 'single'
--- iron.core.add_repl_definitions {
---         python = {
---                 mycustom = {
---                         command = { "mycmd" }
---                 }
---         },
--- }
-
--- iron.core.set_config {
---         buflisted = true,
---         -- visibility = 'single',
---         preferred = {
---                 python = "ipython",
---         }
--- }
-
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocmds = {
