@@ -1,0 +1,4 @@
+start ,launch-waybar
+start wayvnc -r --output=DP-3
+start udiskie
+start nm-applet

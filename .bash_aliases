@@ -35,3 +35,7 @@ type z >/dev/null 2>&1 && alias cd=z
 type nvim >/dev/null 2>&1 && alias vim=nvim
 type lvim >/dev/null 2>&1 && alias vim=lvim
 type lvim >/dev/null 2>&1 && alias nvim=lvim
+
+alias sway="sway > /home/dan/.sway.log 2>&1"
+
+

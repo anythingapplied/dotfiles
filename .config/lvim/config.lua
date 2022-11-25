@@ -1,6 +1,6 @@
 -- ## General ## --
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.colorscheme = "gruvbox"
 
 vim.cmd [[ set mouse-=a ]]
@@ -20,8 +20,8 @@ vim.g["loaded_ruby_provider"] = 0
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = "<CMD>w<CR>"
 lvim.keys.insert_mode["<C-s>"] = "<ESC><CMD>w<CR>"
-lvim.keys.normal_mode["<Tab>"] = "<CMD>BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-Tab>"] = "<CMD>BufferLineCyclePrev<CR>"
+-- lvim.keys.normal_mode["<Tab>"] = "<CMD>BufferLineCycleNext<CR>"
+-- lvim.keys.normal_mode["<S-Tab>"] = "<CMD>BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode[",<Tab>"] = "<CMD>tabNext<CR>"
 lvim.keys.normal_mode[",<S-Tab>"] = "<CMD>tabprevious<CR>"
 lvim.keys.normal_mode["<CR>"] = "<CMD>nohlsearch<CR><CR>"
@@ -198,7 +198,6 @@ lvim.plugins = {
   { "tpope/vim-obsession" },
   { "szw/vim-maximizer" },
   { "christoomey/vim-tmux-navigator" },
-  { "phaazon/hop.nvim" },
   -- { "ivanov/vim-ipython" },
   { "bfredl/nvim-ipy" },
 
@@ -241,7 +240,7 @@ lvim.plugins = {
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
       vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
+      vim.g.indent_blankline_buftype_exclude = { "terminal", "NvimTree" }
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
     end
@@ -302,6 +301,15 @@ lvim.plugins = {
       require("todo-comments").setup()
     end,
   },
+
+  {
+    "phaazon/hop.nvim",
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
 
   -- { "vimwiki/vimwiki" },
   -- { "tools-life/taskwiki" },
