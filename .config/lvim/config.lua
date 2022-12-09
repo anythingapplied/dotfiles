@@ -20,8 +20,8 @@ vim.g["loaded_ruby_provider"] = 0
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = "<CMD>w<CR>"
 lvim.keys.insert_mode["<C-s>"] = "<ESC><CMD>w<CR>"
--- lvim.keys.normal_mode["<Tab>"] = "<CMD>BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-Tab>"] = "<CMD>BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<Tab>"] = "<CMD>BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = "<CMD>BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode[",<Tab>"] = "<CMD>tabNext<CR>"
 lvim.keys.normal_mode[",<S-Tab>"] = "<CMD>tabprevious<CR>"
 lvim.keys.normal_mode["<CR>"] = "<CMD>nohlsearch<CR><CR>"
@@ -36,9 +36,9 @@ lvim.keys.normal_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>"
 lvim.keys.visual_mode["<leader>z"] = "<CMD>MaximizerToggle<CR>gv"
 -- lvim.keys.normal_mode["<leader>C"] = "<CMD>BufferKill!<CR>"
 lvim.builtin.which_key.mappings['x'] = {
-  "<CMD>enew | setlocal bt=nofile bh=hide noswapfile nu | file Scratch<CR>", "Scratch"
+  "<CMD>enew | setlocal ft=python bt=nofile bh=hide noswapfile nu | file Scratch<CR>", "Scratch"
 }
-
+lvim.keys.insert_mode["<C-Del>"] = "<C-o>dw"
 -- for neoscroll support
 lvim.keys.normal_mode["<PageUp>"] = { '<C-b>', { remap = true } }
 lvim.keys.normal_mode["<PageDown>"] = { '<C-f>', { remap = true } }
@@ -61,6 +61,9 @@ lvim.keys.insert_mode["<C-j>"] = "<ESC><C-w>j"
 -- lvim.keys.visual_mode["<leader>P"] = "\"+P"
 -- lvim.keys.visual_mode["<leader>d"] = "\"+d"
 
+-- ## Run Python ## --
+-- lvim.keys.normal_mode[",r"] = "<Plug>JupyterExecute"
+-- lvim.keys.normal_mode[",c"] = "<Plug>JupyterExecuteAll"
 
 -- comment line gcc fix
 vim.api.nvim_set_keymap('o', 'c', '^', { noremap = true, silent = true })
@@ -100,7 +103,7 @@ vim.api.nvim_set_keymap('o', 'c', '^', { noremap = true, silent = true })
 lvim.builtin.alpha.active = true
 -- lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.alpha.mode = "startify"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 -- lvim.builtin.nvimtree.show_icons.git = 0
@@ -199,52 +202,54 @@ lvim.plugins = {
   { "szw/vim-maximizer" },
   { "christoomey/vim-tmux-navigator" },
   -- { "ivanov/vim-ipython" },
-  { "bfredl/nvim-ipy" },
+  -- { "bfredl/nvim-ipy" },
+  -- { "untitled-ai/jupyter_ascending.vim" },
 
   -- ## colorscheme ##
   { "morhetz/gruvbox" },
   -- { "Mofiqul/dracula.nvim" },
   -- { "folke/tokyonight.nvim" },
 
-  -- {
-  --   "jpalardy/vim-slime",
-  --   ft = { 'python' },
-  --   config = function()
-  --     vim.cmd([[
-  --     let g:slime_target = "tmux"
-  --     let g:slime_cell_delimiter = "^#\s*%%"
-  --     let g:slime_default_config = { "socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1" }
-  --     let g:slime_dont_ask_default = 1
-  --     let g:slime_bracketed_paste = 1
-  --     let g:slime_no_mappings = 1
-  --     let g:slime_python_ipython = 1
-  --     nmap <leader>rv <Plug>SlimeConfig
-  --     vmap <leader>rr <Plug>SlimeRegionSend
-  --     nmap <leader>rr <Plug>SlimeCellsSendAndGoToNext
-  --     nmap <leader>rj <Plug>SlimeCellsNext
-  --     nmap <leader>rk <Plug>SlimeCellsPrev
-  --     ]])
-  --   end
-  -- },
-
-  -- {
-  --   'klafyvel/vim-slime-cells',
-  --   requires = { { 'jpalardy/vim-slime', opt = true } },
-  --   ft = { 'python' },
-  -- },
-
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal", "NvimTree" }
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_first_indent_level = false
+    "jpalardy/vim-slime",
+    ft = { 'python' },
+    config = function()
+      vim.cmd([[
+      let g:slime_target = "tmux"
+      let g:slime_cell_delimiter = "^#\\s*%%"
+      let g:slime_default_config = { "socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1" }
+      let g:slime_dont_ask_default = 1
+      let g:slime_bracketed_paste = 1
+      let g:slime_no_mappings = 1
+      let g:slime_python_ipython = 1
+      nmap <leader>rv <Plug>SlimeConfig
+      vmap ,r <Plug>SlimeRegionSend
+      nmap ,R <Plug>SlimeCellsSendAndGoToNext
+      nmap ,r <Plug>SlimeCellsSend
+      nmap ,j <Plug>SlimeCellsNext
+      nmap ,k <Plug>SlimeCellsPrev
+      ]])
     end
   },
+
+  {
+    'klafyvel/vim-slime-cells',
+    requires = { { 'jpalardy/vim-slime', opt = true } },
+    ft = { 'python' },
+  },
+
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "BufRead",
+  --   setup = function()
+  --     vim.g.indentLine_enabled = 1
+  --     vim.g.indent_blankline_char = "▏"
+  --     vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+  --     vim.g.indent_blankline_buftype_exclude = { "terminal", "NvimTree" }
+  --     vim.g.indent_blankline_show_trailing_blankline_indent = false
+  --     vim.g.indent_blankline_show_first_indent_level = false
+  --   end
+  -- },
 
   {
     "itchyny/vim-cursorword",
