@@ -160,38 +160,38 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
+  {
+    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
 
 -- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { command = "flake8", filetypes = { "python" } },
---   {
---     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--severity", "warning" },
---   },
---   {
---     command = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
---   },
--- }
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "flake8", filetypes = { "python" } },
+  {
+    -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "shellcheck",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--severity", "warning" },
+  },
+  {
+    command = "codespell",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "javascript", "python" },
+  },
+}
 
 
 -- Additional Plugins
@@ -217,17 +217,35 @@ lvim.plugins = {
       vim.cmd([[
       let g:slime_target = "tmux"
       let g:slime_cell_delimiter = "^#\\s*%%"
-      let g:slime_default_config = { "socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1" }
+      " let g:slime_default_config = { "socket_name": get(split($TMUX, ","), 0), "target_pane": "{bottom-right}" }
+      let g:slime_default_config = { "socket_name": "default", "target_pane": "{bottom-right}" }
       let g:slime_dont_ask_default = 1
-      let g:slime_bracketed_paste = 1
+      " let g:slime_bracketed_paste = 1
       let g:slime_no_mappings = 1
       let g:slime_python_ipython = 1
       nmap <leader>rv <Plug>SlimeConfig
       vmap ,r <Plug>SlimeRegionSend
       nmap ,R <Plug>SlimeCellsSendAndGoToNext
       nmap ,r <Plug>SlimeCellsSend
+      nmap ,c :<C-U>call Send_Ctrl_C()<CR>
       nmap ,j <Plug>SlimeCellsNext
       nmap ,k <Plug>SlimeCellsPrev
+
+      function SlimeOverride_EscapeText_python(text)
+        let l:target_pane = shellescape(g:slime_default_config["target_pane"])
+        call system("tmux if -F '#{==:#{window_panes},1}' 'split-window -hd ipython'")
+        call system("tmux send -t " . l:target_pane . " C-u")
+        call system("tmux if -F '#{window_zoomed_flag}' 'resize-pane -Z'")
+        call system("tmux select-pane {left}")
+        return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "--\n"]
+      endfunction
+
+      function Send_Ctrl_C()
+        let l:target_pane = shellescape(g:slime_default_config["target_pane"])
+        call system("tmux send -t " . l:target_pane . " C-c")
+      endfunction
+
+
       ]])
     end
   },
@@ -299,20 +317,20 @@ lvim.plugins = {
     end
   },
 
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
+  -- {
+  --   "folke/todo-comments.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("todo-comments").setup()
+  --   end,
+  -- },
 
   {
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
 
