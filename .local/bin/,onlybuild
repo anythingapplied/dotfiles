@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+if [[ $# -eq 0 ]] ; then
+    echo 'Please name the layout'
+    exit 0
+fi
+
+folder=/home/dan/Projects/zmk/zmk/app
+dzmk=/home/dan/Projects/zmk/miryoku_zmk/config
+cd "$folder"
+
+#Left Board
+west build -p -d build/left -b nice_nano_v2 -- -DSHIELD=corne_left -DZMK_CONFIG="$dzmk"
+cp $folder/build/left/zephyr/zmk.uf2 /home/dan/Projects/zmk/zmk/uf2repo/zmk_left_$1.uf2
+
+#Right Board
+west build -p -d build/right -b nice_nano_v2 -- -DSHIELD=corne_right -DZMK_CONFIG="$dzmk"
+cp $folder/build/right/zephyr/zmk.uf2 /home/dan/Projects/zmk/zmk/uf2repo/zmk_right_$1.uf2

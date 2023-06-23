@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+device=epjitsu:libusb:001:009
+source="ADF Duplex"
+format=pnm
+datetxt=$(date +"%Y%m%d_%H%M%S")
+output1=/home/dan/scans/raw/$datetxt%d.$format
+output2=/home/dan/scans/raw/$datetxt*.$format
+
+if [[ $1 == "" ]]
+then
+  pdffile=$datetxt.pdf
+else
+  pdffile=$1
+  [[ $pdffile == *.pdf ]] || pdffile+=.pdf
+fi
+echo $pdffile
+
+scanimage -d $device --source "$source" --format $format --batch=$output1
+convert $output2 $1.pdf
+evince $1.pdf

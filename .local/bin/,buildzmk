@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+folder=/home/dan/Projects/zmk/zmk/app
+dzmk=/home/dan/Projects/zmk/miryoku_zmk/config
+cd "$folder"
+
+#Left Board
+west build -p -d build/left -b nice_nano_v2 -- -DSHIELD="corne_left nice_view_adapter nice_view" -DZMK_CONFIG="$dzmk"
+echo
+echo Bootloader left board
+while [ ! -d /media/dan/NICENANO ]; do
+  sleep 0.5
+done
+echo Copy Started...
+cp $folder/build/left/zephyr/zmk.uf2 /media/dan/NICENANO/
+echo Copy Complete!
+
+#Right Board
+west build -p -d build/right -b nice_nano_v2 -- -DSHIELD=corne_right -DZMK_CONFIG="$dzmk"
+echo Bootloader right board
+while [ ! -d /media/dan/NICENANO ]; do
+  sleep 0.5
+done
+echo Copy Started...
+cp $folder/build/right/zephyr/zmk.uf2 /media/dan/NICENANO/
+echo Copy Complete!

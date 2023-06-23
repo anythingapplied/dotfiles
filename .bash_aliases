@@ -21,7 +21,6 @@ alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
 
 # Custom
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -29,13 +28,18 @@ alias tmux='tmux -2 new -As0 -c ~'
 alias apt='sudo apt'
 alias untar='tar -xvaf'
 
-type exa >/dev/null 2>&1 && alias ls=exa
+type exa >/dev/null 2>&1 && alias ll='exa -l --group-directories-first'
+type exa >/dev/null 2>&1 && alias la='exa -a -a --group-directories-first'
+type exa >/dev/null 2>&1 && alias lt='exa -l --group-directories-first -s=modified'
+
 type batcat >/dev/null 2>&1 && alias cat=batcat
-type z >/dev/null 2>&1 && alias cd=z
+# type zoxide >/dev/null 2>&1 && alias cd=zoxide
 type nvim >/dev/null 2>&1 && alias vim=nvim
+type lvim >/dev/null 2>&1 && alias vi=lvim
 type lvim >/dev/null 2>&1 && alias vim=lvim
 type lvim >/dev/null 2>&1 && alias nvim=lvim
 
-alias sway="sway > /home/dan/.sway.log 2>&1"
-
-
+# alias sway="sway > /home/dan/.sway.log 2>&1"
+#
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'

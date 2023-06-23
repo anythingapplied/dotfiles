@@ -228,15 +228,19 @@ lvim.plugins = {
       nmap ,R <Plug>SlimeCellsSendAndGoToNext
       nmap ,r <Plug>SlimeCellsSend
       nmap ,c :<C-U>call Send_Ctrl_C()<CR>
+      nmap ,l :<C-U>call StartIPython()<CR>
       nmap ,j <Plug>SlimeCellsNext
       nmap ,k <Plug>SlimeCellsPrev
 
-      function SlimeOverride_EscapeText_python(text)
+      function StartIPython()
         let l:target_pane = shellescape(g:slime_default_config["target_pane"])
         call system("tmux if -F '#{==:#{window_panes},1}' 'split-window -hd ipython'")
         call system("tmux send -t " . l:target_pane . " C-u")
         call system("tmux if -F '#{window_zoomed_flag}' 'resize-pane -Z'")
-        call system("tmux select-pane {left}")
+      endfunction
+
+      function SlimeOverride_EscapeText_python(text)
+        call StartIPython()
         return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "--\n"]
       endfunction
 

@@ -59,4 +59,29 @@ eval "$(starship init bash)"
 export EDITOR=/home/dan/.local/bin/lvim
 export VISUAL=/home/dan/.local/bin/lvim
 
+
 source /usr/share/doc/fzf/examples/key-bindings.bash
+source /home/dan/.local/etc/fzf/completion.bash
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
+
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview '/home/dan/.local/bin/fzf-preview.sh {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
+export FZF_TMUX_OPTS='-p80%,60%'
+export FZF_TMUX_OPTS=
+export FZF_TMUX=0
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -o pipefail
+
+server=/home/dan/Projects/terraria/1449/Linux/TerrariaServer.bin.x86_64
+config=gents.config
+discordscript=/home/dan/Projects/terraria/discordout.py
+datetxt=$(date +"%Y%m%d_%H%M%S")
+logfile=/home/dan/Projects/terraria/logs/terraria.$datetxt.log
+
+eval "$server -config $config | tee -i $logfile >(python $discordscript)"
+
